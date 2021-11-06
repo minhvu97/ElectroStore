@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment :: page_head('Roles', 'none')" />
+<body>
+	<div th:replace="fragment :: preloader" />
+	<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+        <header th:replace="fragment :: topbar" />
+        <aside th:replace="fragment :: left-sidebar" />
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb bg-white">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">ROLES</h4>
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+            
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="white-box">
+                            <div class="table-responsive">
+                                <table class="table no-wrap">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0"></th>
+                                            <th class="border-top-0"></th>
+                                            <th class="border-top-0">ID</th>
+                                            <th class="border-top-0"></th>
+                                            <th class="border-top-0"></th>
+                                            <th class="border-top-0"></th>
+                                            <th class="border-top-0"></th>
+                                            <th class="border-top-0"></th>
+                                            <th class="border-top-0">Role name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="role: ${roles}">
+                                            <td></td>
+                                            <td></td>
+                                            <td>[[${role.id}]]</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>[[${role.name}]]</td>
+                                        </tr>                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center"> 2021 © Ample Admin brought to you by <a
+                    href="https://www.wrappixel.com/">wrappixel.com</a>
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+	</div>
+
+<div th:replace="fragment :: script"/>
+
+</body>
+</html>

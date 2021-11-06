@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thyemleaf.org">
+<head>
+	<title>Register</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="formLoginResources/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="formLoginResources/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="formLoginResources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="formLoginResources/fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="formLoginResources/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="formLoginResources/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="formLoginResources/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="formLoginResources/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="formLoginResources/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="formLoginResources/css/util.css">
+	<link rel="stylesheet" type="text/css" href="formLoginResources/css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-register-success100" style="background-image: url('formLoginResources/images/background2.png');">
+				<div class="verify-email-inform-container"><h2>Customer Registration</h2>
+				<h4>You have registered successfully as a customer.</h4>
+				<p>Please check your email to verify your account.</p></div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="formLoginResources/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="formLoginResources/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="formLoginResources/vendor/bootstrap/js/popper.js"></script>
+	<script src="formLoginResources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="formLoginResources/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="formLoginResources/vendor/daterangepicker/moment.min.js"></script>
+	<script src="formLoginResources/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="formLoginResources/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="formLoginResources/js/main.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript">
+    	function readUrl(input) {
+			if(input.files && input.files[0]) {
+				var reader = new FileReader();
+				
+				reader.onload = function(e) {
+					$("#fileSelect").attr('src', e.target.result)
+				}
+				reader.readAsDataURL(input.files[0])
+			}
+		}
+		
+		$(document).ready(function() {
+			$("#imgProfile").change(function() {
+				readUrl(this)
+			})
+		});
+    </script>
+</body>
+</html>

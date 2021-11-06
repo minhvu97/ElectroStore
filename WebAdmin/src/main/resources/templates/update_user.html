@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>New Product</title>
+
+	<!-- Google Font: Source Sans Pro -->
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+	<!-- Theme style -->
+	<link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+
+	<!--addition from index.html-->
+
+	<link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16" href="../../indexResources/plugins/images/favicon.png">
+	<!-- Custom CSS -->
+	<link href="../../indexResources/plugins/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">
+	<link rel="stylesheet"
+		href="../../indexResources/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
+	<!-- Custom CSS -->
+	<link href="../../indexResources/css/style.min.css" rel="stylesheet">
+
+</head>
+
+<body class="hold-transition sidebar-mini">
+	<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+
+
+		<!-- Main Sidebar Container -->
+		<aside class="main-sidebar elevation-4" >
+			<!-- Sidebar scroll-->
+			<div class="scroll-sidebar">
+				<!-- Sidebar navigation-->
+				<nav class="sidebar-nav">
+					<ul id="sidebarnav">
+						<!-- User Profile-->
+						<li class="sidebar-item pt-2">
+							<a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{/}" 
+								aria-expanded="false" style="color: black;">
+								<i class="far fa-clock" aria-hidden="true"></i>
+								<span >Dashboard</span>
+							</a>
+						</li>
+						<li class="sidebar-item">
+							<a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{/users}"
+								aria-expanded="false" style="color: black;">
+								<i class="fa fa-user" aria-hidden="true"></i>
+								<span class="hide-menu">Users</span>
+							</a>
+						</li>
+						<li class="sidebar-item">
+							<a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{/roles}"
+								aria-expanded="false" style="color: black;">
+								<i class="fa fa-user" aria-hidden="true"></i>
+								<span class="hide-menu">Roles</span>
+							</a>
+						</li>
+						<li class="sidebar-item">
+							<a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{/products}"
+								aria-expanded="false" style="color: black;">
+								<i class="fa fa-table" aria-hidden="true"></i>
+								<span class="hide-menu">Products</span>
+							</a>
+						</li>
+						<li class="sidebar-item">
+							<a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{/category}"
+								aria-expanded="false" style="color: black;">
+								<i class="fa fa-table" aria-hidden="true"></i>
+								<span class="hide-menu">Category</span>
+							</a>
+						</li>
+						<li class="sidebar-item">
+							<a class="sidebar-link waves-effect waves-dark sidebar-link" th:href="@{/customer}" 
+								aria-expanded="false" style="color: black;">
+								<i class="fa fa-font" aria-hidden="true"></i>
+								<span class="hide-menu">Customer</span>
+							</a>
+						</li>
+					</ul>
+
+				</nav>
+				<!-- End Sidebar navigation -->
+			</div>
+			<!-- End Sidebar scroll-->
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<!-- left column -->
+						<div class="col-md-12">
+							<!-- general form elements -->
+							<div class="card card-primary">
+								<div class="card-header">
+									<h3 class="card-title">Update User</h3>
+									<div th:each="name : ${listname}">
+										<input type="hidden" name="listname" th:value="${name}">
+									</div>
+								</div>
+								<!-- /.card-header -->
+								<!-- form start -->
+								<form id="updateUserForm" th:action="@{/update-user}" th:method="post" th:object="${user}"
+									enctype="multipart/form-data">
+									<div class="card-body">
+										<div class="form-group">
+											<input type="hidden" th:field="*{id}" class="form-control">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputEmail1" data-validate="User name is required">User name:</label>
+											<input type="text" id = "username" th:field="*{username}" class="form-control" name="username" placeholder="Type your user name">
+										</div>
+
+										<div class="form-group" data-validate="Full name is required">
+											<label for="exampleInputEmail1">Full name:</label>
+											<input type="text" id = "fullname" th:field="*{fullName}" class="form-control" name="fullName" placeholder="Type your full name">
+										</div>
+
+										<div class="form-group" data-validate="Password is required">
+											<label for="exampleInputEmail1">Password:</label>
+											<input type="password" id = "password" th:field="*{password}" class="form-control" name="password" placeholder="Type paassword">
+										</div>
+
+										<div class="form-group" data-validate="Password is required">
+											<label for="exampleInputEmail1">Re-type Password:</label>
+											<input type="password" id = "retypepass" class="form-control" name="retypepass" placeholder="Type your password again">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputEmail1">Role:</label>
+											<div th:each="role: ${roles}">
+												 <input type="checkbox" th:field="*{roles}" th:value="${role.id}">
+												 <label th:for="${#ids.prev('roles')}" th:text="${role.name}"></label>
+											</div>
+										</div>
+										<div class="form-group">
+											 <div class="custom-control custom-radio custom-control-inline">
+								                <input type="radio" id="option1" name="option1" class="custom-control-input" value="true" th:field="*{enabled}">
+								                <label class="custom-control-label" for="option1">Enable</label>
+								            </div>
+								            <div class="custom-control custom-radio custom-control-inline">
+								                <input type="radio" id="option2" name="option2" class="custom-control-input" value="false" th:field="*{enabled}">
+								                <label class="custom-control-label" for="option2">Disable</label>
+								            </div>
+										</div>
+									</div>
+									<!-- /.card-body -->
+
+									<div class="card-footer">
+										<button type="submit"
+										class="btn btn-primary">Update</button>
+									</div>
+								</form>
+							</div>
+							<!-- /.card -->
+						</div>
+						<!--/.col (left) -->
+						
+					</div>
+					<!-- /.row -->
+				</div><!-- /.container-fluid -->
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+		<footer class="main-footer">
+			<div class="float-right d-none d-sm-block">
+				<b>Version</b> 3.1.0
+			</div>
+			<strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
+			reserved.
+		</footer>
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark">
+			<!-- Control sidebar content goes here -->
+		</aside>
+		<!-- /.control-sidebar -->
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- jQuery -->
+	<script src="../../plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 4 -->
+	<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- bs-custom-file-input -->
+	<script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="../../dist/js/adminlte.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="../../dist/js/demo.js"></script>
+	<!-- Page specific script -->
+	<script>
+		$(function () {
+			bsCustomFileInput.init();
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+		});
+		
+		function validateForm(){
+			var listName = document.getElementsByName("listname");
+			var inputUsername = document.getElementById("username").value;
+			var inputFullname = document.getElementById("fullname").value;
+			var password = document.getElementById("password").value;
+			var retypepass = document.getElementById("retypepass").value;
+			var checkboxRole = document.getElementsByName("roles");
+			var checkboxEnabled = document.getElementsByName("enabled");	
+			if(inputUsername == ""){
+				document.getElementById("errorMes").innerHTML = "*Nhap User name";
+				return false;
+			}
+			for(var i = 0; i<listName.length; i++ ){
+				if(inputUsername == listName[i].value){
+					document.getElementById("errorMes").innerHTML = "*User name da ton tai";
+					return false;
+				}
+			}
+			if(inputFullname == ""){
+				document.getElementById("errorMes").innerHTML = "*Nhap Full name";
+				return false;
+			}
+			if(password == "" || retypepass == ""){
+				document.getElementById("errorMes").innerHTML = "*Nhap Password";
+				return false;
+			}
+			else if(password != retypepass){
+				document.getElementById("errorMes").innerHTML = "*Nhap lai Password sai, kiem tra Re-type Password";
+				return false;
+			}
+			for(var i = 0; i<checkboxRole.length; i++ ){
+				if(checkboxRole[i].checked == true){
+					document.getElementById("errorMes").innerHTML = "";
+					break;					
+				}
+				else
+				{
+					document.getElementById("errorMes").innerHTML = "*Chon it nhat 1 Role";
+					if(i == checkboxRole.length - 1)
+					{
+						return false;
+					}
+				}				
+			}
+			for(var i = 0; i<checkboxEnabled.length; i++ ){
+				if(checkboxEnabled[i].checked == true){
+					document.getElementById("errorMes").innerHTML = "";
+					break;
+				}
+				else
+				{
+					document.getElementById("errorMes").innerHTML = "*Chon Enable/Disable";
+					if(i == checkboxEnabled.length - 1)
+					{
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+		
+		$('#updateUserForm').submit(function(e){
+			if(validateForm()){
+				$.ajax({
+					type: 'post',
+					url: "/update-user",
+					data: $('#newUserform').serialize(),
+                    success: function(returnedData){
+                	  console.log("Success"); 
+                    },
+                     error: function(xhr, exception) {
+                	  console.log(exception);
+                    }
+				});
+			}
+			else{
+				$(window).scrollTop(0);
+				e.preventDefault();
+			}
+		})
+	</script>
+</body>
+
+</html>

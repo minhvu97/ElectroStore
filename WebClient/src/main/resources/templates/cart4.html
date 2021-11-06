@@ -1,0 +1,218 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thyemleaf.org"
+	xmlns:sec="http://www.thyemleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:replace="fragment :: page_head('ShoppingCart', 'none')" />
+<link rel="stylesheet" th:href="@{/canvas/css/dark.css}" type="text/css" />
+<link rel="stylesheet" th:href="@{/canvas/css/font-icons.css}" type="text/css" />
+<body>
+	<!-- top-header -->
+	<div th:replace="fragment :: top-header">
+	</div>
+
+	<!-- Button trigger modal(select-location) -->
+	<div th:replace="fragment :: select-location">
+	</div>
+	<!-- //top-header -->
+
+	<!-- header-bottom-->
+	<div th:replace="fragment :: header-bot">
+	</div>
+	<!-- shop locator (popup) -->
+	<!-- //header-bottom -->
+	<!-- navigation -->
+	<div th:replace="fragment :: navbar-inner">
+	</div>
+	<!-- //navigation -->
+
+	<!-- banner-2 -->
+	<div class="page-head_agile_info_w3l">
+
+	</div>
+	<!-- //banner-2 -->
+
+	<!-- page -->
+	<div class="services-breadcrumb">
+		<div class="agile_inner_breadcrumb">
+			<div class="container">
+				<ul class="w3_short">
+					<li>
+						<a href="/">Home</a>
+						<i>|</i>
+					</li>
+					<li>
+						<a href="/products">ELECTRONICS</a>
+						<i>|</i>
+					</li>
+					<li>ShoppingCart</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- //page -->
+	<!-- checkout page -->
+	<div class="privacy py-sm-5 py-4">
+		<div class="container py-xl-4 py-lg-2">
+			<!-- tittle heading -->
+			<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+				<span>S</span>hopping
+				<span>C</span>art
+			</h3>
+			<!-- //tittle heading -->
+			<div class="checkout-right">
+				<h4 class="mb-sm-4 mb-3">Your shopping cart contains:
+					<span th:id="cartQuantityTotal">[[${totalQuantityInfo}]]</span> 
+					<span>Products</span>
+				</h4>
+				<div class="table-responsive" style="overflow-x: inherit;">
+				<form class="row" th:action="@{/update_cart}" method="POST">
+					<table class="timetable_sub">
+						<thead>
+							<tr>
+								<th>SL No.</th>
+								<th>Product</th>
+								<th>Quality</th>
+								<th>Product Name</th>
+								<th>Unit Price</th>
+								<th>Price</th>
+								<th>Remove</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+								<tr class="rem1" th:each="cartLine, varStatus: ${cartInfo.cartLines}" th:id="'cartLine' + ${varStatus.count}">
+									<td class="invert">[[${varStatus.index} + 1]]</td>
+									<td class="invert-image">
+										<a th:href="@{/single?code={code}(code=${cartLine.product.code})}">
+											<img th:src="@{${cartLine.product.photoPath}}" alt=" "
+												class="img-responsive" style="width: 100px;">
+										</a>
+									</td>
+									<td class="cart-product-quantity">
+											<div class="quantity">
+												<input id="minus" type="button" value="-" class="minus"
+													th:pid="${cartLine.product.code}">
+												<input type="hidden" th:name="|cartLines[${varStatus.index}].id|"
+													th:value="${cartLine.product.id}">
+												<input type="text" th:name="|cartLines[${varStatus.index}].quantity|"
+													th:value="${cartLine.quantity}" class="qty"
+													th:id="'quantity' + ${cartLine.product.code}" style="width: 20px;" 
+													onkeypress="this.style.width = ((this.value.length + 2) * 5) + 'px';" 
+													pattern="[0-9]+"
+													/>
+												<input id="plus" type="button" value="+" class="plus"
+													th:pid="${cartLine.product.code}">
+											</div>
+									</td>
+									<td class="invert">[[${cartLine.product.name}]]</td>
+									<td class="invert" th:id="'itemPrice' + ${cartLine.product.code}" >[[${cartLine.unitPrice}]]</td>
+									<td class="invert cartline-total" th:id="'itemSubtotal' + ${cartLine.product.code}" style="min-width: 70px;">[[${cartLine.total}]]</td>
+									<td class="cart-product-remove"><a th:cartLine="${varStatus.count}" th:href="@{'/restapi/shopcart_delete/'+${cartLine.product.code}}" class="remove-cartline"
+											title="Remove this item"><i class="icon-trash2"></i></a></td>
+								</tr>
+<!--								<tr class="rem2">
+									<div class="col-6">
+										<button type="submit"> Update
+											Totals</button>
+									</div>
+								</tr>-->
+							
+						</tbody>
+					</table>
+</form>
+				</div>
+				<h4 class="mb-sm-4 mb-3" style="margin-top: 25px; text-align: right;">
+					<span class="amount color lead" >Totals:<strong th:id="cartInfoTotal">[[${totalCartInfo}]]</strong></span>
+				</h4>
+			</div>
+			<div class="checkout-left">
+				<div class="address_form_agile mt-sm-5 mt-4">
+<!--					<h4 class="mb-sm-4 mb-3">Add a new Details</h4>
+					<form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
+						<div class="creditly-wrapper wthree, w3_agileits_wrapper">
+							<div class="information-wrapper">
+								<div class="first-row">
+									<div class="controls form-group">
+										<input class="billing-address-name form-control" type="text" name="name"
+											placeholder="Full Name" required="">
+									</div>
+									<div class="w3_agileits_card_number_grids">
+										<div class="w3_agileits_card_number_grid_left form-group">
+											<div class="controls">
+												<input type="text" class="form-control" placeholder="Mobile Number"
+													name="number" required="">
+											</div>
+										</div>
+										<div class="w3_agileits_card_number_grid_right form-group">
+											<div class="controls">
+												<input type="text" class="form-control" placeholder="Landmark"
+													name="landmark" required="">
+											</div>
+										</div>
+									</div>
+									<div class="controls form-group">
+										<input type="text" class="form-control" placeholder="Town/City" name="city"
+											required="">
+									</div>
+									<div class="controls form-group">
+										<select class="option-w3ls">
+											<option>Select Address type</option>
+											<option>Office</option>
+											<option>Home</option>
+											<option>Commercial</option>
+
+										</select>
+									</div>
+								</div>
+								<button class="submit check_out btn">Delivery to this Address</button>
+							</div>
+						</div>
+					</form>-->
+
+					<div class="checkout-right-basket">
+						<a th:href="@{/checkout}" class="button button-3d m-0">Make a Payment
+							<span class="far fa-hand-point-right"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //checkout page -->
+
+	<!-- middle section -->
+	<div th:replace="fragment :: middle-section">
+	</div>
+	<!-- middle section -->
+
+	<!-- footer -->
+	<footer th:replace="fragment :: footer">
+	</footer>
+	<!-- //footer -->
+	<!-- copyright -->
+	<div th:replace="fragment :: copy-right">
+	</div>
+	<!-- //copyright -->
+
+	<!-- js-files -->
+	<div th:replace="fragment :: script">
+	</div>
+	
+	
+	<!-- test add minis cart.html -->
+	<script th:src="@{/js/shoppingcart.js}"></script>
+	<script type="text/javascript">
+		var csrfHeaderName = "[[${_csrf.headerName}]]";
+		var csrfValue = "[[${_csrf.token}]]";
+	</script>
+	<!-- //test add minis cart.html -->
+	<!-- //js-files -->
+
+</body>
+
+</html>

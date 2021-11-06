@@ -1,0 +1,32 @@
+server:
+  port: 8082
+spring:
+  datasource:
+    password: 123456
+    url: jdbc:mysql://localhost:3306/electricshop
+    username: root
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 407686433364-r4i0ij6uu122svf8ugfdijp8qa1e0m4b.apps.googleusercontent.com
+            client-secret: _h3OfRKIzERiWrtwYA2MDXhW
+            scope:
+            - email
+            - profile      
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: omoach@gmail.com
+    password: bhjxmycpwiopaxja
+    properties:      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          

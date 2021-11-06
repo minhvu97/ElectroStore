@@ -1,0 +1,217 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thyemleaf.org"
+				xmlns:sec="http://www.thyemleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragment :: page_head('single', 'none')" />
+
+<body>
+	<!-- top-header -->
+	<div th:replace="fragment :: top-header">
+	</div>
+
+	<!-- Button trigger modal(select-location) -->
+	<div th:replace="fragment :: select-location">
+	</div>
+	<!-- //top-header -->
+
+	<!-- header-bottom-->
+	<div th:replace="fragment :: header-bot">
+	</div>
+	<!-- shop locator (popup) -->
+	<!-- //header-bottom -->
+	<!-- navigation -->
+	<div th:replace="fragment :: navbar-inner">
+	</div>
+	<!-- //navigation -->
+
+	<!-- banner-2 -->
+	<div class="page-head_agile_info_w3l">
+
+	</div>
+	<!-- //banner-2 -->
+	<!-- page -->
+	<div class="services-breadcrumb">
+		<div class="agile_inner_breadcrumb">
+			<div class="container">
+				<ul class="w3_short">
+					<li>
+						<a th:href="@{/}">Home</a>
+						<i>|</i>
+					</li>
+					<li>Single Product 1</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- //page -->
+
+	<!-- Single Page -->
+	<div class="banner-bootom-w3-agileits py-5">
+		<div class="container py-xl-4 py-lg-2">
+			<!-- tittle heading -->
+			<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+				<span>S</span>ingle
+				<span>P</span>age</h3>
+			<!-- //tittle heading -->
+			<div class="row">
+				<div class="col-lg-5 col-md-8 single-right-left ">
+					<div class="grid images_3_of_2">
+						<div class="flexslider">
+							<ul class="slides" th:if="${product.code} != 'a02-01'">
+								<li th:attr="data-thumb=@{${product.photoPath}}">
+									<div class="thumb-image">
+										<img th:src="@{${product.photoPath}}" data-imagezoom="true" class="img-fluid" alt=""> </div>
+								</li>
+								<li th:attr="data-thumb=@{${product.photoPath}}">
+									<div class="thumb-image">
+										<img th:src="@{${product.photoPath}}" data-imagezoom="true" class="img-fluid" alt=""> </div>
+								</li>
+								<li th:attr="data-thumb=@{${product.photoPath}}">
+									<div class="thumb-image">
+										<img th:src="@{${product.photoPath}}" data-imagezoom="true" class="img-fluid" alt=""> </div>
+								</li>
+							</ul>
+							<ul class="slides" th:unless="${product.code} != 'a02-01'">
+								<li th:attr="data-thumb=@{${product.photoPath}+'_1.jpg'}">
+									<div class="thumb-image">
+										<img th:src="@{${product.photoPath}+'_1.jpg'}" data-imagezoom="true" class="img-fluid" alt="" > </div>
+								</li>
+								<li th:attr="data-thumb=@{${product.photoPath}+'_2.jpg'}">
+									<div class="thumb-image">
+										<img th:src="@{${product.photoPath}+'_2.jpg'}" data-imagezoom="true" class="img-fluid" alt=""> </div>
+								</li>
+								<li th:attr="data-thumb=@{${product.photoPath}+'_3.jpg'}">
+									<div class="thumb-image">
+										<img th:src="@{${product.photoPath}+'_3.jpg'}" data-imagezoom="true" class="img-fluid" alt=""> </div>
+								</li>
+							</ul>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-7 single-right-left simpleCart_shelfItem">
+					<h3 class="mb-3">[[${product.name}]]</h3>
+					<p class="mb-3">
+						<span class="item_price">[[${product.salePrice}]]</span>
+						<del class="mx-2 font-weight-light">[[${product.price}]]</del>
+						<label>Free delivery</label>
+					</p>
+					<div class="single-infoagile">
+						<ul>
+							<li class="mb-3">
+								Cash on Delivery Eligible.
+							</li>
+							<li class="mb-3">
+								Shipping Speed to Delivery.
+							</li>
+							<li class="mb-3">
+								EMIs from $655/month.
+							</li>
+							<li class="mb-3">
+								Bank OfferExtra 5% off* with Axis Bank Buzz Credit CardT&C
+							</li>
+						</ul>
+					</div>
+					<div class="product-single-w3l">
+						<p class="my-3">
+							<i class="far fa-hand-point-right mr-2"></i>
+							<label>1 Year</label>Manufacturer Warranty</p>
+						<ul>
+							<li class="mb-1">
+								3 GB RAM | 16 GB ROM | Expandable Upto 256 GB
+							</li>
+							<li class="mb-1">
+								5.5 inch Full HD Display
+							</li>
+							<li class="mb-1">
+								13MP Rear Camera | 8MP Front Camera
+							</li>
+							<li class="mb-1">
+								3300 mAh Battery
+							</li>
+							<li class="mb-1">
+								Exynos 7870 Octa Core 1.6GHz Processor
+							</li>
+						</ul>
+						<p class="my-sm-4 my-3">
+							<i class="fas fa-retweet mr-3"></i>Net banking & Credit/ Debit/ ATM card
+						</p>
+					</div>
+					<div class="occasion-cart">
+						<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+							<form th:action="@{/addtocart}" method="get">
+								<fieldset>
+									<input type="hidden" name="cmd" value="_cart" />
+									<input type="hidden" name="add" value="1" />
+									<input type="hidden" name="business" value=" " />
+									<input type="hidden" name="item_name"
+										th:value="${product.name}" />
+									<input type="hidden" name="code" th:value="${product.code}" />
+									<input type="hidden" name="amount"
+										th:value="${product.salePrice}" />
+									<input type="hidden" name="discount_amount"
+										th:value="${product.price} - ${product.salePrice}" />
+									<input type="hidden" name="currency_code" value="USD" />
+									<input type="hidden" name="return" value=" " />
+									<input type="hidden" name="cancel_return" value=" " />
+									<!--<input type="submit" name="submit" value="Add to cart" class="button" />-->
+									<input type="submit" name="submit" value="Add to cart"
+										class="button btn" th:if="${product.quantity} > 0"/>
+									<input type="submit" name="submit" value="Out of stock" disabled style="color: gray;"
+										class="btn" th:unless="${product.quantity} > 0"/>
+								</fieldset>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //Single Page -->
+
+	<!-- middle section -->
+	<div th:replace="fragment :: middle-section">
+	</div>
+	<!-- middle section -->
+
+	<!-- footer -->
+	<footer th:replace="fragment :: footer">
+	</footer>
+	<!-- //footer -->
+	<!-- copyright -->
+	<div th:replace="fragment :: copy-right">
+	</div>
+	<!-- //copyright -->
+
+	<!-- js-files -->
+	<div th:replace="fragment :: script">
+	</div>
+		<!-- imagezoom -->
+	<script src="js/imagezoom.js"></script>
+	<!-- //imagezoom -->
+
+	<!-- flexslider -->
+	<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+
+	<script src="js/jquery.flexslider.js"></script>
+	<script>
+		// Can also be used with $(document).ready()
+		$(window).load(function () {
+			$('.flexslider').flexslider({
+				animation: "slide",
+				controlNav: "thumbnails"
+			});
+		});
+	</script>
+	<!-- //FlexSlider-->
+	<!-- //js-files -->
+
+</body>
+
+</html>

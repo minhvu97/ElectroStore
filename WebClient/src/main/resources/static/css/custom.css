@@ -1,0 +1,29 @@
+.ui-autocomplete-row {
+width: 100%;
+}
+
+.ui-autocomplete-img {
+width: 96px;
+height: 96px;
+padding: 3px 8px;
+}
+
+.button2link {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  font-family: 'Poppins-Regular';
+  /*input has OS specific font-family*/
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 1.7;
+  margin: 0;
+  font-size: 18px;
+  max-width: 200px;
+}
+
+input.button2link {
+    white-space: pre-line;
+    min-height: 70px;
+}

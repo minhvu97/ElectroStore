@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Table V01</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="userResources/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="userResources/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="userResources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="userResources/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="userResources/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="userResources/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="userResources/css/util.css">
+	<link rel="stylesheet" type="text/css" href="userResources/css/main.css">
+	
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16" href="../../indexResources/plugins/images/favicon.png">
+	<!-- Custom CSS -->
+	<link href="../../indexResources/plugins/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">
+	<link rel="stylesheet"
+		href="../../indexResources/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
+	<!-- Custom CSS -->
+	<link href="../../indexResources/css/style.min.css" rel="stylesheet">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+		<aside class="left-sidebar" data-sidebarbg="skin6" style="padding-top: 0px;">
+			<div th:replace="index :: Sidebar-nav"></div>
+		</aside>
+		<div class="container-table100" style="margin-left:100px;">
+			<div class="wrap-table100">
+				<div class="table100">
+					<table>
+						<thead>
+							<tr class="table100-head">
+								<th class="column1">ID</th>
+								<th class="column2">Email</th>
+								<th class="column3">First Name</th>
+								<th class="column4">Last Name</th>
+								<th style="width: 100px;">Phone Number</th>
+								<th style="width: 100px;">Last Login</th>
+								<th style="width: 100px;">Created Date</th>
+								<th style="width: 100px;">Login By</th>
+								<th style="width: 100px;">Enabled</th>
+								<th style="width: 100px;"></th>
+							</tr>
+						</thead>
+						<tbody>
+								<tr th:each="customer: ${customers}">
+									<td class="column1" th:text="${customer.id}"></td>
+									<td class="column2">										
+										<a th:href="@{#}" th:text="${customer.email}"></a>
+									</td>
+									<td class="column3" th:text="${customer.firstName}"></td>
+									<td class="column4" th:text="${customer.lastName}"></td>
+									<td th:text="${customer.phoneNumber}">
+									<td th:text="${customer.lastLoginDate}">
+									<td th:text="${customer.createdDate}">
+									<td th:text="${customer.authProvider}">
+									<td>
+										<div th:switch="${customer.enabled}">
+	                                	 	<div th:case="${true}">Yes</div>
+	                                	 	<div th:case="${false}">No</div>
+	                                	</div>
+									</td>
+									<td>
+				                    	<!--<a th:href="@{/delete-user?id={id}(id=${user.id})}">Delete</a>-->
+				                    	<a th:href="@{#}">Delete</a>
+				                    </td>
+								</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+
+<!--===============================================================================================-->	
+	<script src="userResources/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="userResources/vendor/bootstrap/js/popper.js"></script>
+	<script src="userResources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="userResources/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="userResources/js/main.js"></script>
+
+</body>
+</html>

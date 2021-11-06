@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>[[${subject}]]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<style>
+		table,
+		th,
+		td {
+			border: 1px solid black;
+		}
+	</style>
+</head>
+
+<body>
+	<p>
+		Hello [[${name}]],
+	</p>
+
+	<p>Your current order contains:</p>
+	<!--        <ul th:each="orderDetail : ${listOrderDetail}">
+            <li th:text="${orderDetail.productName}">Reading</li>
+            <li>------------</li>
+        </ul>-->
+
+	<table class="timetable_sub">
+		<thead>
+			<tr>
+				<th>SL No.</th>
+				<th>Product Name</th>
+				<th>Quality</th>
+				<th>Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="rem1" th:each="orderDetail,varStatus : ${listOrderDetail}">
+				<td class="invert">[[${varStatus.index} + 1]]</td>
+				<td class="invert">[[${orderDetail.productName}]]</td>
+				<td class="invert">[[${orderDetail.quantity}]]</td>
+				<td class="invert">[[${orderDetail.price}]]</td>
+			</tr>
+		</tbody>
+	</table>
+	<strong>Total: [[${totalPrice}]]</strong>
+
+</body>
+
+</html>
